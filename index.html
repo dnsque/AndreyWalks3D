@@ -16,6 +16,43 @@
             padding: 10px;
             border-radius: 5px;
         }
+        
+        /* Mobile control buttons */
+        .mobile-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 60px);
+            grid-template-rows: repeat(3, 60px);
+            gap: 5px;
+            touch-action: none;
+        }
+        
+        .mobile-btn {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border: 2px solid white;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+        
+        .mobile-btn:active {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .btn-up { grid-column: 2; grid-row: 1; }
+        .btn-left { grid-column: 1; grid-row: 2; }
+        .btn-right { grid-column: 3; grid-row: 2; }
+        .btn-down { grid-column: 2; grid-row: 3; }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
@@ -25,6 +62,15 @@
     <div class="controls">
         <p>Управление: WASD для движения</p>
     </div>
+    
+    <!-- Mobile controls -->
+    <div class="mobile-controls">
+        <div class="mobile-btn btn-up" id="btn-w">W</div>
+        <div class="mobile-btn btn-left" id="btn-a">A</div>
+        <div class="mobile-btn btn-right" id="btn-d">D</div>
+        <div class="mobile-btn btn-down" id="btn-s">S</div>
+    </div>
+    
     <script src="main.js"></script>
 </body>
 </html>

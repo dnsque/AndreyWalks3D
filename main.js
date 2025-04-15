@@ -177,7 +177,7 @@ function createSimpleCharacter() {
     textContext.fillStyle = 'black';
     textContext.font = 'bold 40px Arial';
     textContext.textAlign = 'center';
-    textContext.fillText('Andrey', 128, 44);
+    textContext.fillText('Andrey Mamaev', 128, 44);
     
     const textTexture = new THREE.CanvasTexture(textCanvas);
     nameTag.material.map = textTexture;
@@ -208,7 +208,7 @@ const velocity = {
 const speed = 0.05;
 let walkingAnimation = 0;
 
-// Key event listeners
+// Keyboard event listeners
 document.addEventListener('keydown', (event) => {
     if (keys.hasOwnProperty(event.key.toLowerCase())) {
         keys[event.key.toLowerCase()] = true;
@@ -218,6 +218,65 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keyup', (event) => {
     if (keys.hasOwnProperty(event.key.toLowerCase())) {
         keys[event.key.toLowerCase()] = false;
+    }
+});
+
+// Mobile touch controls
+const mobileButtons = {
+    'btn-w': 'w',
+    'btn-a': 'a',
+    'btn-s': 's',
+    'btn-d': 'd'
+};
+
+// Setup mobile touch controls
+Object.keys(mobileButtons).forEach(btnId => {
+    const button = document.getElementById(btnId);
+    if (button) {
+        const keyName = mobileButtons[btnId];
+        
+        // Touch start
+        button.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Prevent default touch behavior
+            keys[keyName] = true;
+        });
+        
+        // Touch end
+        button.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            keys[keyName] = false;
+        });
+        
+        // Mouse events for testing on desktop
+        button.addEventListener('mousedown', () => {
+            keys[keyName] = true;
+        });
+        
+        button.addEventListener('mouseup', () => {
+            keys[keyName] = false;
+        });
+        
+        // Handle mouse leaving the button while pressed
+        button.addEventListener('mouseleave', () => {
+            keys[keyName] = false;
+        });
+    }
+});
+
+// Check if device is mobile
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+// Show/hide mobile controls based on device
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileControls = document.querySelector('.mobile-controls');
+    if (mobileControls) {
+        if (isMobileDevice()) {
+            mobileControls.style.display = 'grid';
+        } else {
+            mobileControls.style.display = 'none';
+        }
     }
 });
 
