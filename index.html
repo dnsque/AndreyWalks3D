@@ -53,6 +53,48 @@
         .btn-left { grid-column: 1; grid-row: 2; }
         .btn-right { grid-column: 3; grid-row: 2; }
         .btn-down { grid-column: 2; grid-row: 3; }
+        
+        /* Virtual joystick */
+        #joystick-container {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 50%;
+            touch-action: none;
+            display: none; /* Will be shown only on mobile devices */
+        }
+        
+        #joystick-knob {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 2px solid white;
+            border-radius: 50%;
+            touch-action: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* Control toggle */
+        #control-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border: 2px solid white;
+            border-radius: 10px;
+            padding: 10px;
+            color: white;
+            font-weight: bold;
+            z-index: 10;
+            display: none; /* Will be shown only on mobile devices */
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
@@ -63,12 +105,20 @@
         <p>Управление: WASD для движения</p>
     </div>
     
-    <!-- Mobile controls -->
-    <div class="mobile-controls">
+    <!-- Control toggle for mobile -->
+    <button id="control-toggle">Сменить управление</button>
+    
+    <!-- Mobile controls - Buttons -->
+    <div class="mobile-controls" id="mobile-buttons">
         <div class="mobile-btn btn-up" id="btn-w">W</div>
         <div class="mobile-btn btn-left" id="btn-a">A</div>
         <div class="mobile-btn btn-right" id="btn-d">D</div>
         <div class="mobile-btn btn-down" id="btn-s">S</div>
+    </div>
+    
+    <!-- Mobile controls - Joystick -->
+    <div id="joystick-container">
+        <div id="joystick-knob"></div>
     </div>
     
     <script src="main.js"></script>
