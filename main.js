@@ -163,8 +163,8 @@ function createSimpleCharacter() {
     rightFoot.castShadow = true;
     characterGroup.add(rightFoot);
     
-    // Name tag - "Andrey"
-    const textGeometry = new THREE.BoxGeometry(0.4, 0.08, 0.01);
+    // Name tag - "Andrey Mamaev"
+    const textGeometry = new THREE.BoxGeometry(0.5, 0.08, 0.01);
     const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
     const nameTag = new THREE.Mesh(textGeometry, textMaterial);
     nameTag.position.set(0, 1.75, 0);
